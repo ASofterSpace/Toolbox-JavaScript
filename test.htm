@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>A Softer Space Toolbox-JavaScript Test</title>
+		<title>Toolbox Test</title>
 
 		<meta name="keywords" content="toolbox, test">
 
@@ -23,20 +23,34 @@
 		</div>
 
 		<script>
-			// wait three seconds and hope that all has been loaded by then
-			// TODO :: actually wait actively until all has been loaded!
-			window.setTimeout(function() {
+			window.intervalId = window.setInterval(function() {
 
-				toolbox.test.TestUtils.setLogFunction({
-					log: function(logline) {
-						document.getElementById("resultDisplay").innerHTML +=
-							logline.split("\n").join("<br>") + "<br>";
-					},
-				});
+				// actually wait until all has been loaded!
+				if (toolbox &&
+					toolbox.utils &&
+					toolbox.utils.DateUtils &&
+					toolbox.utils.StrUtils &&
+					toolbox.test &&
+					toolbox.test.TestUtils &&
+					toolbox.selftest &&
+					toolbox.selftest.AllTests &&
+					toolbox.selftest.StrUtilsTest
+				) {
 
-				toolbox.selftest.AllTests.main();
+					window.clearInterval(window.intervalId);
 
-			}, 3000);
+					// all has been loaded - let's go!
+					toolbox.test.TestUtils.setLogFunction({
+						log: function(logline) {
+							document.getElementById("resultDisplay").innerHTML +=
+								logline.split("\n").join("<br>") + "<br>";
+						},
+					});
+
+					toolbox.selftest.AllTests.main();
+				}
+
+			}, 1000);
 		</script>
 	</body>
 </html>
