@@ -10,10 +10,33 @@
 
 		<meta name="description" content="Tests the A Softer Space Toolbox-JavaScript">
 
-		<script src="example.js"></script>
+		<script src="toolbox/Utils-0.0.1.js"></script>
+		<script src="toolbox/selftest/AllTests.js"></script>
+		<script src="toolbox/selftest/StrUtilsTest.js"></script>
+		<script src="toolbox/test/TestUtils-0.0.1.js"></script>
+		<script src="toolbox/utils/DateUtils-0.0.1.js"></script>
+		<script src="toolbox/utils/StrUtils-0.0.1.js"></script>
 	</head>
 
 	<body>
-		TODO
+		<div id="resultDisplay">
+		</div>
+
+		<script>
+			// wait three seconds and hope that all has been loaded by then
+			// TODO :: actually wait actively until all has been loaded!
+			window.setTimeout(function() {
+
+				toolbox.test.TestUtils.setLogFunction({
+					log: function(logline) {
+						document.getElementById("resultDisplay").innerHTML +=
+							logline.split("\n").join("<br>") + "<br>";
+					},
+				});
+
+				toolbox.selftest.AllTests.main();
+
+			}, 3000);
+		</script>
 	</body>
 </html>
