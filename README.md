@@ -19,7 +19,7 @@ To use the toolbox in your project, just copy the relevant javascript files from
 To run the self-tests, open locally in your browser the file:
 
 ```
-index.htm
+test.htm
 ```
 
 ## Versioning
