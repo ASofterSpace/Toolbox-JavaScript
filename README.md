@@ -10,7 +10,9 @@ A toolbox for javascript source code snippets that (hopefully) help getting stuf
 
 ## Setup
 
-To use the toolbox in your project, just copy the relevant files into it. :)
+To use the toolbox in your project, just copy the relevant javascript files from the `toolbox` folder into it. :)
+
+(However, beware that some files depend on each other - in general, all the files from a subfolder should be present together.)
 
 ## Test
 
@@ -19,6 +21,12 @@ To run the self-tests, open locally in your browser the file:
 ```
 index.htm
 ```
+
+## Versioning
+
+When you check out this repository, all the files should work together with the versions that you are getting.
+
+The reason the version is explicitly included in the filenames, on a per-file basis, is just so that files can be cached forever without a user getting a wrong version.
 
 ## License
 
