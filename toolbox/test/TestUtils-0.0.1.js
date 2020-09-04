@@ -3,6 +3,8 @@
  * www.asofterspace.com/licenses/unlicense.txt
  */
 
+(function() {
+
 /**
  * Utility class used for testing stuff
  */
@@ -191,3 +193,5 @@ if (window.toolbox) {
 		}
 	};
 }
+
+})();

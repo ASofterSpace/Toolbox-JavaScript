@@ -3,6 +3,8 @@
  * www.asofterspace.com/licenses/unlicense.txt
  */
 
+(function() {
+
 var StrUtils = {
 
 	leftPadW: function(origStr, length) {
@@ -48,3 +50,5 @@ if (window.toolbox) {
 		}
 	};
 }
+
+})();

@@ -6,6 +6,8 @@
  * but not supposed to be shipped to a user.
  */
 
+(function() {
+
 var AllTests = {
 
 	main: function(args) {
@@ -15,6 +17,8 @@ var AllTests = {
 		TestUtils.startSuite();
 
 		TestUtils.run(toolbox.selftest.StrUtilsTest);
+
+		TestUtils.run(toolbox.selftest.SortUtilsTest);
 
 		TestUtils.endSuite();
 
@@ -43,3 +47,5 @@ if (window.toolbox) {
 		}
 	};
 }
+
+})();

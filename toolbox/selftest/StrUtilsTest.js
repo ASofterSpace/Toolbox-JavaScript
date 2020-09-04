@@ -6,6 +6,8 @@
  * but not supposed to be shipped to a user.
  */
 
+(function() {
+
 var StrUtilsTest = {
 
 	runAll: function() {
@@ -72,3 +74,5 @@ if (window.toolbox) {
 		}
 	};
 }
+
+})();

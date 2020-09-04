@@ -3,9 +3,11 @@
  * www.asofterspace.com/licenses/unlicense.txt
  */
 
+(function() {
+
 var Utils = {
 
-	TOOLBOX_VERSION_NUMBER: 1,
+	TOOLBOX_VERSION_NUMBER: 2,
 
 	// these values are set once at the startup of the program which contains
 	// the Utils and are constant from then onwards
@@ -70,3 +72,5 @@ if (window.toolbox) {
 		Utils: Utils
 	};
 }
+
+})();

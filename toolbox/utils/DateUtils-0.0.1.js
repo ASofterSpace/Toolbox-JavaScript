@@ -3,6 +3,8 @@
  * www.asofterspace.com/licenses/unlicense.txt
  */
 
+(function() {
+
 var DateUtils = {
 
 	getCurrentDateTimeStamp: function() {
@@ -37,3 +39,5 @@ if (window.toolbox) {
 		}
 	};
 }
+
+})();
