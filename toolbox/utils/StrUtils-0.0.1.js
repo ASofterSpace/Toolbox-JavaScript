@@ -32,6 +32,37 @@ var StrUtils = {
 		return result;
 	},
 
+	/**
+	 * Replaces all occurrences of findThis in a string with replaceWith
+	 * This does NOT use a regex, or any other nonsense - just plain string comparison
+	 * Also, this only replaces all once - call replaceAllRepeatedly if you want to ensure
+	 * that the result does not contain any occurrences of findThis anymore at all
+	 * (With this method, if origStr is "foobar", and findThis is "o" and replaceWith is "oo",
+	 * we return "foooobar" instead of looping forever)
+	 */
+	replaceAll: function(origStr, findThis, replaceWith) {
+		if (origStr == null) {
+			return null;
+		}
+		if (findThis == null) {
+			return origStr;
+		}
+		if (replaceWith == null) {
+			replaceWith = "";
+		}
+		var result = "";
+		var index = origStr.indexOf(findThis);
+		while (index >= 0) {
+			result += origStr.substr(0, index);
+			result += replaceWith;
+			// TODO :: improve speed by not calling substr but keeping track of start!
+			origStr = origStr.substr(index + findThis.length);
+			index = origStr.indexOf(findThis);
+		}
+		result += origStr;
+		return result;
+	},
+
 };
 
 
