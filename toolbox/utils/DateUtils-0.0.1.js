@@ -19,6 +19,19 @@ var DateUtils = {
 	},
 
 	/**
+	 * Serializes a date-time as e.g. 2020-10-12
+	 */
+	serializeDate: function(datetime) {
+		if (datetime == null) {
+			return null;
+		}
+		var StrUtils = toolbox.utils.StrUtils;
+		return datetime.getFullYear() + "-" +
+			StrUtils.leftPad0((datetime.getMonth()+1), 2) + "-" +
+			StrUtils.leftPad0(datetime.getDate(), 2);
+	},
+
+	/**
 	 * Serializes a date-time as e.g. 12th of October 2020, 15:37
 	 * (when we are unsure about the date, we probably don't need the seconds and milliseconds!)
 	 */
