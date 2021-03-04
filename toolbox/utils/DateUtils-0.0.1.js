@@ -124,6 +124,13 @@ var DateUtils = {
 		return this.DAY_NAMES[val];
 	},
 
+	getHour: function(date) {
+		if (date == null) {
+			return null;
+		}
+		return date.getHours();
+	},
+
 	/**
 	 * Gets the month number, January is 1
 	 */
