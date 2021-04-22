@@ -19,6 +19,25 @@ var DateUtils = {
 	},
 
 	/**
+	 * Returns a date that is the addTo date time plus howMany days
+	 * (negative values are also allowed)
+	 */
+	 addDays: function(addTo, howMany) {
+
+		if (howMany == null) {
+			return new Date();
+		}
+
+		if (addTo == null) {
+			addTo = new Date();
+		}
+
+		result = new Date();
+		result.setDate(addTo.getDate() + howMany);
+		return result;
+	}
+
+	/**
 	 * Serializes a date-time as e.g. 2020-10-12
 	 */
 	serializeDate: function(datetime) {
@@ -32,17 +51,16 @@ var DateUtils = {
 	},
 
 	/**
-	 * Serializes a date-time as e.g. 12th of October 2020, 15:37
-	 * (when we are unsure about the date, we probably don't need the seconds and milliseconds!)
+	 * Serializes a date as e.g. 12th of October 2020
 	 */
-	serializeDateTimeLong: function(datetime) {
-		return this.serializeDateTimeLong(datetime, null, null);
+	serializeDateLong: function(datetime) {
+		return this.serializeDateLong(datetime, null, null);
 	},
 
 	/**
-	 * Serializes a date-time as e.g. 12<span class="sup">th</span> of October 2020, 15:37
+	 * Serializes a date as e.g. 12<span class="sup">th</span> of October 2020
 	 */
-	serializeDateTimeLong: function(datetime, beforeUp, afterUp) {
+	serializeDateLong: function(datetime, beforeUp, afterUp) {
 
 		if (datetime == null) {
 			return null;
@@ -89,7 +107,27 @@ var DateUtils = {
 		result += " ";
 		result += this.getYear(datetime);
 
-		return result + ", " + this.serializeTimeShort(datetime);
+		return result;
+	}
+
+	/**
+	 * Serializes a date-time as e.g. 12th of October 2020, 15:37
+	 * (when we are unsure about the date, we probably don't need the seconds and milliseconds!)
+	 */
+	serializeDateTimeLong: function(datetime) {
+		return this.serializeDateTimeLong(datetime, null, null);
+	},
+
+	/**
+	 * Serializes a date-time as e.g. 12<span class="sup">th</span> of October 2020, 15:37
+	 */
+	serializeDateTimeLong: function(datetime, beforeUp, afterUp) {
+
+		if (datetime == null) {
+			return null;
+		}
+
+		return this.serializeDateLong(datetime, beforeUp, afterUp) + ", " + this.serializeTimeShort(datetime);
 	},
 
 	serializeTimeShort: function(time) {
