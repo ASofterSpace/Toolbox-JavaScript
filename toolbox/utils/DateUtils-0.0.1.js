@@ -35,7 +35,7 @@ var DateUtils = {
 		result = new Date();
 		result.setDate(addTo.getDate() + howMany);
 		return result;
-	}
+	},
 
 	/**
 	 * Serializes a date-time as e.g. 2020-10-12
@@ -108,7 +108,7 @@ var DateUtils = {
 		result += this.getYear(datetime);
 
 		return result;
-	}
+	},
 
 	/**
 	 * Serializes a date-time as e.g. 12th of October 2020, 15:37
