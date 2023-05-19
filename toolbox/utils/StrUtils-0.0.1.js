@@ -119,6 +119,87 @@ var StrUtils = {
 		textarea.selectionEnd = start + indentedVal.length;
 	},
 
+	applyQuoteStyleToLog: function(memoId) {
+		var memo = document.getElementById(memoId);
+		var selStart = memo.selectionStart;
+		var selEnd = memo.selectionEnd;
+		if (selEnd < selStart) {
+			var i = selStart;
+			selStart = selEnd;
+			selEnd = i;
+		}
+		var text = memo.value;
+		var midText = text.substr(selStart, selEnd - selStart);
+		if (midText.substr(0, 1) == "\n") {
+			selStart++;
+		} else if ((selStart > 0) && (text.substr(selStart - 1, 1) == "\n")) {
+			// do nothing as selStart is already perfectly fine
+		} else {
+			selStart = text.lastIndexOf("\n", selStart) + 1;
+		}
+		midText = text.substr(selStart, selEnd - selStart);
+		midText = "| " + midText;
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n", "\n| ");
+		text = text.substr(0, selStart) + midText + text.substr(selEnd);
+		memo.value = text;
+	},
+
+	applyEmailStyleToLog: function(memoId) {
+		var memo = document.getElementById(memoId);
+		var selStart = memo.selectionStart;
+		var selEnd = memo.selectionEnd;
+		if (selEnd < selStart) {
+			var i = selStart;
+			selStart = selEnd;
+			selEnd = i;
+		}
+		var text = memo.value;
+		var midText = text.substr(selStart, selEnd - selStart);
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\n", "\n");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n \n", "\n\n");
+		text = text.substr(0, selStart) + midText + text.substr(selEnd);
+		memo.value = text;
+	},
+
+	applyRemoveNewlineStyleToLog: function(memoId) {
+		var memo = document.getElementById(memoId);
+		var selStart = memo.selectionStart;
+		var selEnd = memo.selectionEnd;
+		if (selEnd < selStart) {
+			var i = selStart;
+			selStart = selEnd;
+			selEnd = i;
+		}
+		var text = memo.value;
+		var midText = text.substr(selStart, selEnd - selStart);
+		midText = toolbox.utils.StrUtils.replaceAll(midText, " \n", "\n");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\n\n", "\n\n");
+		var REP_TOKEN = "[REPLACE_TOKEN_27398]";
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\n", REP_TOKEN);
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n", " ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, REP_TOKEN, "\n\n");
+		text = text.substr(0, selStart) + midText + text.substr(selEnd);
+		memo.value = text;
+	},
+
+	applySpaceToBulletPoint: function(memoId) {
+		var memo = document.getElementById(memoId);
+		var selStart = memo.selectionStart;
+		var selEnd = memo.selectionEnd;
+		if (selEnd < selStart) {
+			var i = selStart;
+			selStart = selEnd;
+			selEnd = i;
+		}
+		var text = memo.value;
+		var midText = text.substr(selStart, selEnd - selStart);
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n        ", "\n   * ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n    ", "\n* ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n   * ", "\n    * ");
+		text = text.substr(0, selStart) + midText + text.substr(selEnd);
+		memo.value = text;
+	},
+
 
 };
 
