@@ -82,10 +82,19 @@ var StrUtils = {
 	},
 
 	// indent or unindent several lines in an open textarea based on an event
-	indentOrUnindent(textarea, event) {
+	indentOrUnindent: function(textarea, event) {
 		var start = textarea.selectionStart;
 		var end = textarea.selectionEnd;
 		var val = textarea.value;
+		if (start == end) {
+			textarea.value =
+				val.substring(0, start) +
+				"\t" +
+				val.substring(end);
+			textarea.selectionStart = start + 1;
+			textarea.selectionEnd = start + 1;
+			return;
+		}
 		// if this comes back as -1, we add 1 and are at 0, which is exactly what we want :)
 		start = val.lastIndexOf("\n", start) + 1;
 		var indented = val.substring(start, end).split("\n");
