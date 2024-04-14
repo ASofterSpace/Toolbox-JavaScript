@@ -32,7 +32,7 @@ var DateUtils = {
 			addTo = new Date();
 		}
 
-		result = new Date();
+		result = new Date(addTo);
 		result.setDate(addTo.getDate() + howMany);
 		return result;
 	},
