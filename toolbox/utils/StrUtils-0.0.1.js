@@ -202,7 +202,13 @@ var StrUtils = {
 		}
 		var text = memo.value;
 		var midText = text.substr(selStart, selEnd - selStart);
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n        ", "\n   * ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t\t\t", "\n\t\t\t* ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t\t", "\n\t\t* ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t", "\n\t* ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t", "\n* ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n                ", "\n            * ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n            ", "\n        * ");
+		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n        ", "\n    * ");
 		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n    ", "\n* ");
 		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n   * ", "\n    * ");
 		text = text.substr(0, selStart) + midText + text.substr(selEnd);
