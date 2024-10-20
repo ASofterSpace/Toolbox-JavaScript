@@ -63,6 +63,13 @@ var StrUtils = {
 		return result;
 	},
 
+	replaceAllRepeatedly: function(origStr, findThis, replaceWith) {
+		while (origStr.indexOf(findThis) > 0) {
+			origStr = this.replaceAll(origStr, findThis, replaceWith);
+		}
+		return origStr;
+	},
+
 	// insert generic text to an open textarea based on an event
 	insertText: function(textarea, toInsert, event) {
 		var start = textarea.selectionStart;
@@ -202,14 +209,10 @@ var StrUtils = {
 		}
 		var text = memo.value;
 		var midText = text.substr(selStart, selEnd - selStart);
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t\t\t", "\n\t\t\t* ");
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t\t", "\n\t\t* ");
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t\t", "\n\t* ");
 		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n\t", "\n* ");
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n                ", "\n            * ");
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n            ", "\n        * ");
-		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n        ", "\n    * ");
+		midText = toolbox.utils.StrUtils.replaceAllRepeatedly(midText, "* \t", "\t* ");
 		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n    ", "\n* ");
+		midText = toolbox.utils.StrUtils.replaceAllRepeatedly(midText, "*     ", "    * ");
 		midText = toolbox.utils.StrUtils.replaceAll(midText, "\n   * ", "\n    * ");
 		text = text.substr(0, selStart) + midText + text.substr(selEnd);
 		memo.value = text;
